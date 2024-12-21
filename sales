@@ -1,0 +1,38 @@
+-- What is the earliest year of purchase?
+SELECT MIN (year) AS earliest_year
+FROM Prework.Sales;
+
+-- What is the average customer age per year? Order the years in ascending order.
+SELECT AVG(Customer_age) AS avg_customer_age,
+Year
+FROM Prework.Sales
+GROUP BY 2
+ORDER BY 2;
+
+-- Return all clothing purchases from September 2015 where the cost was at least $70.
+SELECT * 
+FROM `Prework.Sales` LIMIT 10; -- I'm running this query to take a glace of the overall dataset to know what columns to choose in the select statement.
+
+SELECT Year,Month, Product_category, Unit_price
+FROM `Prework.Sales`
+WHERE Year = 2015
+AND Month = "September"
+AND Unit_price = 70; 
+
+-- What are all the different types of product categories that were sold from 2014 to 2016 in France?
+SELECT DISTINCT Product_category, Year, Country
+FROM `Prework.Sales`
+WHERE Year BETWEEN 2014 AND 2016
+AND Country = "France"
+ORDER BY Year;
+
+-- Within each product category and age group (combined), what is the average order quantity and total profit?
+SELECT * 
+FROM `Prework.Sales` LIMIT 10; -- I'm running this query to take a glace of the overall dataset to know what columns to choose in the select statement.
+
+select Product_Category, 
+Age_Group,
+avg(Order_Quantity) as avg_order_quantity, 
+sum(Profit) as total_profit
+from Prework.Sales
+group by 1,2;
