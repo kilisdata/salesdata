@@ -1,0 +1,41 @@
+-- 1.	What is the earliest year of purchase?
+
+SELECT MIN(Year)
+FROM `Prework.Sales`;
+
+-- 2.	What is the average customer age per year? Order the years in ascending order.
+
+SELECT Year
+  ,AVG(Customer_Age) AS Avg_Age
+FROM `Prework.Sales`
+GROUP BY 1
+ORDER BY 1;
+
+-- 3.	Return all clothing purchases from September 2015 where the cost was at least $70.
+
+SELECT Product_Category
+  ,Month
+  ,Cost
+FROM `Prework.Sales`
+WHERE Product_Category LIKE "Clothing"
+  AND Year = 2015
+  AND Cost = 70
+  AND Month LIKE "September";
+
+-- 4.	What are all the different types of product categories that were sold from 2014 to 2016 in France?
+
+SELECT DISTINCT Product_Category
+  ,Year
+  ,Country
+FROM `Prework.Sales`
+WHERE Year BETWEEN 2014 AND 2016
+  AND Country LIKE "France";  
+
+-- 5.	Within each product category and age group (combined), what is the average order quantity and total profit?
+
+SELECT Product_Category
+  ,Age_Group
+  ,AVG(Order_Quantity)
+  ,SUM(Profit)
+FROM `Prework.Sales`
+GROUP BY 1,2;
